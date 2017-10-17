@@ -3,7 +3,7 @@
   <groupId>DrawTest2</groupId>
   <artifactId>DrawTest2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
+
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 	<dependency>
@@ -11,32 +11,37 @@
 	    <artifactId>spring-context</artifactId>
 	    <version>5.0.0.RELEASE</version>
 	</dependency>
-	
+
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
 	    <version>5.0.0.RELEASE</version>
 	</dependency>
-	
+
   	<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 	<dependency>
 	    <groupId>com.google.guava</groupId>
 	    <artifactId>guava</artifactId>
 	    <version>16.0.1</version>
 	</dependency>
-  	
+
   	<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
 	<dependency>
 	    <groupId>commons-logging</groupId>
 	    <artifactId>commons-logging</artifactId>
 	    <version>1.2</version>
 	</dependency>
- 
+
   </dependencies>
-  
+
   <build>
-    <sourceDirectory>DrawTest2/src</sourceDirectory>
+	<resources>
+		<resource>
+			<directory>DrawTest2/src/main/resources</directory>
+		</resource>
+	</resources>
+    <sourceDirectory>DrawTest2/</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -46,6 +51,33 @@
           <target/>
         </configuration>
       </plugin>
+
+	  <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>3.1</version>
+		<configuration>
+			<source>1.7</source>
+			<target>1.7</target>
+		</configuration>
+	  </plugin>
     </plugins>
   </build>
 </project>

@@ -10,26 +10,29 @@ import enums.Pieces;
 
 public class Rook extends Piece {
 
-	private final String uri_black  = "DrawTest2/src/main/resouces/picture/chess-pieces/r.png"; 
-	
-	private final String uri_white = "DrawTest2/src/main/resouces/picture/chess-pieces/r_w.png";
-	
-	
+	private final String uri_black  = "picture/chess-pieces/r.png";
+
+	private final String uri_white = "picture/chess-pieces/r_w.png";
+
+
 	private void setRookImage() {
 		try {
+			System.out.println(System.getProperty("user.dir"));
+
 			if (super.getColour() == Colour.BLACK)
-				super.setImage(ImageIO.read(new File(uri_black)));
-			else 
-				super.setImage(ImageIO.read(new File(uri_white)));
+
+				super.setImage(ImageIO.read(getClass().getClassLoader().getResourceAsStream(uri_black)));
+			else
+				super.setImage(ImageIO.read(getClass().getClassLoader().getResourceAsStream(uri_white)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Rook(Colour colour) {
 		super.setColour(colour);
 		super.setPieceType(Pieces.ROOK);
 		setRookImage();
 	}
-	
+
 }
